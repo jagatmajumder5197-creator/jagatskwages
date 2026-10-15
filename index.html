@@ -19,7 +19,7 @@
         }
 
         .no-print {
-            max-width: 900px;
+            max-width: 210mm;
             margin: 0 auto 20px auto;
             background: white;
             padding: 20px;
@@ -31,7 +31,7 @@
         .no-print h1 {
             font-size: 24px;
             color: #1e293b;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .filter-group {
@@ -133,7 +133,7 @@
 
         .school-header > div {
             text-align: center;    
-            flex-grow: 1;  
+            flex-grow: 1;   
             min-width: 0;
         }
         
@@ -307,7 +307,7 @@
 
     <div class="no-print">
         <h1>SHRIPUR KINDERGARTEN SCHOOL</h1>
-        <p style="color: #6b7280; font-size: 16px; margin-bottom: 20px;">Wages Slip Portal</p>
+        <p style="color: #6b7280; font-size: 16px; margin-bottom: 20px;">JI&A</p>
         
         <div class="filter-group">
             <select id="monthYearSelect">
@@ -507,21 +507,9 @@
             const advanced = parseFloat(row.ADVANCED) || 0;
             const fees = parseFloat(row.FEES) || 0;
 
-            let redDtn = 0;
-            if (redFd === 1) {
-                redDtn = (basic * redFd) / 30;
-            } else if (redFd > 1) {
-                redDtn = (basic * redFd) / workingDay;
-            }
-
-            let greenDtn = 0;
-            if (greenFd > 0 && greenFd <= 2) {
-                greenDtn = (basic * greenFd) / 30;
-            } else if (greenFd > 2) {
-                greenDtn = (basic * greenFd) / workingDay;
-            }
-
-            const netWages = (basic - redDtn - greenDtn - advanced - fees).toFixed(2);
+            const redDtn = parseFloat(row.RDTN) || 0;
+            const greenDtn = parseFloat(row.GDTN) || 0;
+            const netWages = (parseFloat(row.NET_WAGES) || 0).toFixed(2);
 
             const month = String(row.MONTH || '').trim();
             const year = String(row.YEAR || '').trim();
