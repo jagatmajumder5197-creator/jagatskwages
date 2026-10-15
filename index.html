@@ -515,7 +515,7 @@
             const year = String(row.YEAR || '').trim();
             const name = String(row.NAME_OF_STAFF || '').trim();
             const phone = String(row.PHONE_NO || '').trim();
-            const address = String(row.ADDRESS || '').trim();
+            const address = String(row.ADDRESS || '').trim().toUpperCase();
             const totalDay = String(row.TOTAL_DAY || '').trim();
             const sunDay = String(row.SUN_DAY || '').trim();
             const holiDay = String(row.HOLI_DAY || '').trim();
@@ -573,8 +573,8 @@
                         <table>
                             <tr>
                                 <th>Basic</th>
-                                <th>Red Dtn</th>
-                                <th>Green Dtn</th>
+                                <th>Red DTN.</th>
+                                <th>Green DTN.</th>
                                 <th>Net</th>
                             </tr>
                             <tr>
