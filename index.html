@@ -436,8 +436,30 @@
                 }
             });
 
+            const monthOrder = {
+                "JANUARY": 1, "FEB": 2, "FEBRUARY": 2, "MARCH": 3, "APRIL": 4,
+                "MAY": 5, "JUNE": 6, "JULY": 7, "AUGUST": 8, "AUG": 8,
+                "SEPTEMBER": 9, "SEP": 9, "OCTOBER": 10, "OCT": 10,
+                "NOVEMBER": 11, "NOV": 11, "DECEMBER": 12, "DEC": 12
+            };
+
+            const sortedMonthYears = Array.from(monthYearSet).sort((a, b) => {
+                const [monthA, yearA] = a.split(' ');
+                const [monthB, yearB] = b.split(' ');
+
+                // First compare years
+                if (yearA !== yearB) {
+                    return parseInt(yearA) - parseInt(yearB);
+                }
+
+                // Then compare months chronologically
+                const orderA = monthOrder[monthA.toUpperCase()] || 99;
+                const orderB = monthOrder[monthB.toUpperCase()] || 99;
+                return orderA - orderB;
+            });
+
             const monthYearSelect = document.getElementById('monthYearSelect');
-            Array.from(monthYearSet).sort().forEach(my => {
+            sortedMonthYears.forEach(my => {
                 const option = document.createElement('option');
                 option.value = my;
                 option.textContent = my;
